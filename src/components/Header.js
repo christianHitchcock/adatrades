@@ -1,30 +1,35 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Dropdown, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ThemeConsumer } from '../context/ThemeContext';
-export default class Header extends Component {
-  componentDidMount() {
+
+const Header = () => {
+  useEffect(() => {
+    const handleClick = () => {
+      document.body.classList.toggle('dark');
+    };
+
     let el = document.querySelector('#darkTheme');
     if (el) {
-      el.addEventListener('click', function () {
-        document.body.classList.toggle('dark');
-      });
+      el.addEventListener('click', handleClick);
     }
-  }
-  render() {
-    return (
+
+    return () => {
+      if (el) {
+        el.removeEventListener('click', handleClick);
+      }
+    };
+  }, []);
+
+  return (
       <>
         <header className="light-bb">
           <Navbar expand="lg">
             <Link className="navbar-brand" to="/">
               <ThemeConsumer>
-                {({ data }) => {
-                  return data.theme === 'light' ? (
+                {({ data }) => (
                     <img src={'img/Adatradeslogo.png'} alt="logo" />
-                  ) : (
-                    <img src={'img/Adatradeslogo.png'} alt="logo" />
-                  );
-                }}
+                )}
               </ThemeConsumer>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -75,13 +80,13 @@ export default class Header extends Component {
                 <Dropdown className="header-custom-icon">
                   <ThemeConsumer>
                     {({ data, update }) => (
-                      <Button variant="default" onClick={update} id="darkTheme">
-                        {data.theme === 'light' ? (
-                          <i className="icon ion-md-moon"></i>
-                        ) : (
-                          <i className="icon ion-md-sunny"></i>
-                        )}
-                      </Button>
+                        <Button variant="default" onClick={update} id="darkTheme">
+                          {data.theme === 'light' ? (
+                              <i className="icon ion-md-moon"></i>
+                          ) : (
+                              <i className="icon ion-md-sunny"></i>
+                          )}
+                        </Button>
                     )}
                   </ThemeConsumer>
                   <Dropdown.Toggle variant="default">
@@ -200,6 +205,7 @@ export default class Header extends Component {
           </Navbar>
         </header>
       </>
-    );
-  }
-}
+  );
+};
+
+export default Header;
