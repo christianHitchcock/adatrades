@@ -16,6 +16,7 @@ import NewsDetails from './news-details';
 import Signup from './signup';
 import Notfound from './notfound';
 import AuthWrapper from "../utils/AuthWrapper";
+import '../main.css'
 
 export default function Index() {
   const loginPath = '/login';

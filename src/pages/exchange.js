@@ -8,11 +8,13 @@ import OrderBook from '../components/OrderBook';
 import TradingChart from '../components/TradingChart';
 import TradingChartDark from '../components/TradingChartDark';
 import { ThemeConsumer } from '../context/ThemeContext';
+import LoadingOverlay from "../components/Loading";
 
 export default class exchange extends Component {
   render() {
     return (
       <>
+        <LoadingOverlay />
         <div className="container-fluid mtb15 no-fluid">
           <div className="row sm-gutters">
             <div className="col-sm-12 col-md-3">
