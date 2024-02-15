@@ -13,13 +13,17 @@ export default function Login() {
     const {loading, error} = useSelector(state => state.auth);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(await loginAuth(()=>navigate('/')));
+        await dispatch(
+            await loginAuth(
+                {email: `${email}`, password: `${password}`},
+                () => navigate('/'))
+        );
 
     };
 
     return (
         <>
-            <LoadingOverlay />
+            <LoadingOverlay/>
             <div className="vh-100 d-flex justify-content-center">
                 <div className="form-access my-auto">
                     <form onSubmit={handleSubmit}>
@@ -30,6 +34,8 @@ export default function Login() {
                                 className="form-control"
                                 placeholder="Email Address"
                                 required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
@@ -38,6 +44,8 @@ export default function Login() {
                                 className="form-control"
                                 placeholder="Password"
                                 required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div className="text-right">
