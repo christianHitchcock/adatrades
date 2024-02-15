@@ -8,8 +8,9 @@ import {logoutAsync} from "../redux/reducers/test";
 import {clearPersistedData} from "../redux/store";
 
 const Header = () => {
-    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const {isAuthenticated, user} = useSelector(state => state.auth);
     const dispatch = useDispatch();
+    const userProfile = user?.user;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -190,9 +191,9 @@ const Header = () => {
                                                 <img src={'img/avatar.svg'} alt=""/>
                                             </div>
                                             <div className="info text-center">
-                                                <p className="name font-weight-bold mb-0">Tony Stark</p>
+                                                <p className="name font-weight-bold mb-0">{userProfile?.email}</p>
                                                 <p className="email text-muted mb-3">
-                                                    tonystark@gmail.com
+                                                    {userProfile?.name}
                                                 </p>
                                             </div>
                                         </div>

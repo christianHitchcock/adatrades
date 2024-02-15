@@ -26,9 +26,7 @@ const isDataExpired = (timestamp) => {
 const persistConfig = {
     key: "root",
     version: 1,
-    storage,
-    whitelist: ["auth"], // Specify the reducers you want to persist
-    serialize: false, // To handle manual serialization
+    storage,// To handle manual serialization
     expire: { // Define expiration settings
         default: expirationTimeInMilliseconds, // Set a default expiration time
     },

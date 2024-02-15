@@ -1,4 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
+import axios from "axios";
+import {jwtDecode} from "jwt-decode";
 
 const initialState = {
     isAuthenticated: false,
@@ -46,25 +48,41 @@ export const {
     clearError,
 } = authSlice.actions;
 
-export function loginAsync(cb) {
+export function loginAsync(body, cb) {
     return async (dispatch) => {
-        dispatch(loginRequest()); // Dispatch loginRequest action to set loading to true
+        dispatch(loginRequest());
         try {
-            // Simulating an asynchronous login request
-            setTimeout(() => {
-                dispatch(loginSuccess({user: 'mer'})); // Dispatch loginSuccess after a delay
-                cb();
-            }, 10000);
+            const response = await axios.post('https://backend-ada-8su2.vercel.app/auth/signin', body);
+            const token = response.data.token;
+            const decoded = jwtDecode(token);
+            dispatch(loginSuccess(decoded));
+            cb();
         } catch (error) {
-            dispatch(loginFailure(error)); // Dispatch loginFailure if an error occurs
+            if (error.response) {
+                return dispatch(loginFailure(error.response.data.message))
+            }
+            return dispatch(loginFailure(`${error.message}`));
         }
     };
 }
 
+export function register(body, cb) {
+    return async (dispatch) => {
+        dispatch(loginRequest());
+        try{
+            const response = await axios.post('https://backend-ada-8su2.vercel.app/auth/signup', body);
+            console.log(response)
+
+        }catch (error) {
+            return dispatch(loginFailure(`${error.message}`))
+        }
+    }
+}
+
 export function logoutAsync() {
     return async (dispatch) => {
-         dispatch(loginRequest());
-         setTimeout(() => {
+        dispatch(loginRequest());
+        setTimeout(() => {
             dispatch(logout());
         }, 10000);
     };
