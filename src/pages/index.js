@@ -1,6 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { Switch, Route } from 'react-router-dom';
 import Exchange from '../pages/exchange';
 import Markets from '../pages/markets';
 import Profile from './profile';
@@ -15,56 +15,35 @@ import TermsAndConditions from './terms-and-conditions';
 import NewsDetails from './news-details';
 import Signup from './signup';
 import Notfound from './notfound';
+import AuthWrapper from "../utils/AuthWrapper";
+import '../main.css'
 
-export default function index() {
+export default function Index() {
+  const loginPath = '/login';
   return (
-    <>
-      <Layout>
-        <Switch>
-          <Route exact path="/">
-            <Exchange />
-          </Route>
-          <Route path="/markets">
-            <Markets />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/wallet">
-            <Wallet />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/reset">
-            <Reset />
-          </Route>
-          <Route path="/otp-verify">
-            <OtpVerify />
-          </Route>
-          <Route path="/otp-number">
-            <OtpNumber />
-          </Route>
-          <Route path="/lock">
-            <Lock />
-          </Route>
-          <Route path="/terms-and-conditions">
-            <TermsAndConditions />
-          </Route>
-          <Route path="/news-details">
-            <NewsDetails />
-          </Route>
-          <Route path="/notfound">
-            <Notfound />
-          </Route>
-        </Switch>
-      </Layout>
-    </>
+      <Router>
+        <Layout>
+          <Routes>
+            {/* Wrap each route with AuthWrapper to add authentication checks */}
+            <Route path="/" element={<Exchange />} />
+            <Route path="/markets" element={<Markets />} />
+            {/* Wrap Profile route with AuthWrapper and pass loginPath */}
+            <Route path="/profile" element={<AuthWrapper loginPath={loginPath}><Profile /></AuthWrapper>} />
+            {/* Wrap Wallet route with AuthWrapper and pass loginPath */}
+            <Route path="/wallet" element={<AuthWrapper loginPath={loginPath}><Wallet /></AuthWrapper>} />
+            {/* Wrap Settings route with AuthWrapper and pass loginPath */}
+            <Route path="/settings" element={<AuthWrapper loginPath={loginPath}><Settings /></AuthWrapper>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/reset" element={<Reset />} />
+            <Route path="/otp-verify" element={<OtpVerify />} />
+            <Route path="/otp-number" element={<OtpNumber />} />
+            <Route path="/lock" element={<Lock />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/news-details" element={<NewsDetails />} />
+            <Route path="/notfound" element={<Notfound />} />
+          </Routes>
+        </Layout>
+      </Router>
   );
 }
