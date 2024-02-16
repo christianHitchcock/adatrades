@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import {register} from "../redux/reducers/test";
 
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -32,15 +33,24 @@ export default function Signup() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
             setPasswordError('Passwords do not match');
             return;
         }
+        const body = {
+            email: formData.email,
+            name: formData.fullName,
+            phoneNumber: formData.phoneNumber,
+            password: formData.password
+        }
         setPasswordError('');
         console.log(formData);
+        await dispatch(
+            await register(body, () => navigate('/login'))
+        )
     };
 
     return (

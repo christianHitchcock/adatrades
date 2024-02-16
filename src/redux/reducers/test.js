@@ -69,11 +69,14 @@ export function loginAsync(body, cb) {
 export function register(body, cb) {
     return async (dispatch) => {
         dispatch(loginRequest());
-        try{
+        try {
             const response = await axios.post('https://backend-ada-8su2.vercel.app/auth/signup', body);
             console.log(response)
-
-        }catch (error) {
+            cb();
+            const token = response.data.token;
+            const decoded = jwtDecode(token);
+            dispatch(loginSuccess(decoded));
+        } catch (error) {
             return dispatch(loginFailure(`${error.message}`))
         }
     }
