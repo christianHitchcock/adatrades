@@ -10,7 +10,7 @@ import {clearPersistedData} from "../redux/store";
 const Header = () => {
     const {isAuthenticated, user} = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const userProfile = user?.user;
+    const userProfile = user;
     const navigate = useNavigate();
 
     useEffect(() => {
