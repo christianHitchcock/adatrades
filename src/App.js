@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Index from './pages';
 
 const App = () => {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('dark');
 
     const toggleTheme = () => {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -26,10 +25,10 @@ const App = () => {
         </>
     );
 };
-
-const ScrollToTop = () => {
-    window.scrollTo(0, 0);
-    return null;
-};
+//
+// const ScrollToTop = () => {
+//     window.scrollTo(0, 0);
+//     return null;
+// };
 
 export default App;

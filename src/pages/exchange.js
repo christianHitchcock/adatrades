@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HistoryOrder from '../components/HistoryOrder';
 import MarketHistory from '../components/MarketHistory';
 import MarketNews from '../components/MarketNews';
 import MarketPairs from '../components/MarketPairs';
@@ -36,12 +35,12 @@ export default class exchange extends Component {
               <OrderBook />
               <MarketHistory />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-12">
               <MarketNews />
             </div>
-            <div className="col-md-9">
+            {/*<div className="col-md-9">
               <HistoryOrder />
-            </div>
+            </div>*/}
           </div>
         </div>
       </>

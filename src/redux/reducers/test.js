@@ -85,9 +85,7 @@ export function register(body, cb) {
 export function logoutAsync() {
     return async (dispatch) => {
         dispatch(loginRequest());
-        setTimeout(() => {
-            dispatch(logout());
-        }, 10000);
+        dispatch(logout());
     };
 }
 
