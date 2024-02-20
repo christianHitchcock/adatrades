@@ -16,76 +16,12 @@ export default function MarketHistory() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/*<tr>
                   <td>13:03:53</td>
                   <td className="red">0.020191</td>
                   <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="red">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="red">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="red">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="red">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="green">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
-                <tr>
-                  <td>13:03:53</td>
-                  <td className="red">0.020191</td>
-                  <td>0.2155045</td>
-                </tr>
+                </tr>*/}
+
               </tbody>
             </table>
           </Tab>
